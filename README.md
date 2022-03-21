@@ -1,8 +1,6 @@
-# curriculum-databases-projects-template
+# Vet Clinic Database
 
-> This template should be used for database related projects at Microverse.
-> Generate your own repository, update this README and edit all files content while working on projects. You should not be adding any new files unless asked otherwise.
-
+> This is a vet clinic database project to grasp the concepts of databases and PostgreSQL.
 
 ## Getting Started
 
@@ -15,17 +13,11 @@ This repository includes files with plain SQL that can be used to recreate a dat
 
 ## Authors
 
-👤 **Author1**
+👤 **Pedro Guerreiro**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@guerreiropedr0](https://github.com/guerreiropedr0)
+- Twitter: [@guerreiropedr0](https://twitter.com/guerreiropedr0)
+- LinkedIn: [Pedro Guerreiro](https://www.linkedin.com/in/guerreiropedr0/)
 
 ## 🤝 Contributing
 
@@ -39,9 +31,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- [FreeCodeCamp's Youtube video tutorial of PostgreSQL](https://www.youtube.com/watch?v=qw--VYLpxG4)
 
 ## 📝 License
 
