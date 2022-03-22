@@ -102,3 +102,109 @@ SELECT species, SUM(escape_attempts) FROM animals WHERE date_of_birth BETWEEN DA
  pokemon |   6
 (1 row)
 */
+
+/*What animals belong to Melody Pond?*/
+
+SELECT name FROM animals
+JOIN owners ON animals.owner_id = owners.id
+WHERE owners.id = 4;
+
+/*
+    name
+------------
+ Blossom
+ Charmander
+ Squirtle
+(3 rows)
+*/
+
+/*List of all animals that are pokemon (their type is Pokemon)*/
+
+SELECT animals.name, animals.species_id, species.name FROM animals
+JOIN species ON animals.species_id = species.id
+WHERE species.id = 1;
+
+/*
+    name    | species_id |  name
+------------+------------+---------
+ Pikachu    |          1 | Pokemon
+ Blossom    |          1 | Pokemon
+ Charmander |          1 | Pokemon
+ Squirtle   |          1 | Pokemon
+(4 rows)
+*/
+
+/*List all owners and their animals, remember to include those that don't own any animal*/
+
+SELECT * FROM animals
+LEFT JOIN owners ON animals.owner_id = owners.id;
+
+/*
+ id |    name    | date_of_birth | escape_attempts | neutered | weight_kg | species_id | owner_id | id |    full_name    | age
+----+------------+---------------+-----------------+----------+-----------+------------+----------+----+-----------------+-----
+  1 | Agumon     | 2020-02-03    |               0 | t        |     10.23 |          2 |        1 |  1 | Sam Smith       |  34
+  2 | Gabumon    | 2018-11-15    |               2 | t        |         8 |          2 |        2 |  2 | Jennifer Orwell |  19
+  3 | Pikachu    | 2021-01-07    |               1 | f        |     15.04 |          1 |        2 |  2 | Jennifer Orwell |  19
+  6 | Plantmon   | 2021-11-15    |               2 | t        |       5.7 |          2 |        3 |  3 | Bob             |  45
+  4 | Devimon    | 2017-05-12    |               5 | t        |        11 |          2 |        3 |  3 | Bob             |  45
+  7 | Squirtle   | 1993-04-02    |               3 | f        |     12.13 |          1 |        4 |  4 | Melody Pond     |  77
+  5 | Charmander | 2020-02-08    |               0 | f        |        11 |          1 |        4 |  4 | Melody Pond     |  77
+ 10 | Blossom    | 1998-10-13    |               3 | t        |        17 |          1 |        4 |  4 | Melody Pond     |  77
+  8 | Angemon    | 2005-06-12    |               1 | t        |        45 |          2 |        5 |  5 | Dean Winchester |  14
+  9 | Boarmon    | 2005-06-07    |               7 | t        |      20.4 |          2 |        5 |  5 | Dean Winchester |  14
+(10 rows)
+*/
+
+/*How many animals are there per species?*/
+
+SELECT species.name, COUNT(animals.species_id) FROM animals
+JOIN species ON animals.species_id = species.id GROUP BY species.name;
+
+/*
+  name   | count
+---------+-------
+ Pokemon |     4
+ Digimon |     6
+(2 rows)
+*/
+
+/*List all Digimon owned by Jennifer Orwell*/
+
+SELECT owners.full_name, animals.species_id, animals.name AS pokemon FROM animals
+JOIN owners ON animals.owner_id = owners.id
+WHERE owners.id = 2 AND animals.species_id = 2;
+
+/*
+    full_name    | species_id | pokemon
+-----------------+------------+---------
+ Jennifer Orwell |          2 | Gabumon
+(1 row)
+*/
+
+/*List all animals owned by Dean Winchester that haven't tried to escape*/
+
+SELECT * FROM animals
+JOIN owners ON animals.owner_id = owners.id
+WHERE animals.owner_id = 5 AND animals.escape_attempts = 1;
+
+/*
+ id | name | date_of_birth | escape_attempts | neutered | weight_kg | species_id | owner_id | id | full_name | age
+----+------+---------------+-----------------+----------+-----------+------------+----------+----+-----------+-----
+(0 rows)
+*/
+
+/*Who owns the most animals?*/
+
+SELECT owners.full_name, COUNT(animals.owner_id) AS total_animals FROM animals
+JOIN owners ON animals.owner_id = owners.id GROUP BY owners.full_name ORDER BY COUNT(*) DESC;
+
+/*
+    full_name    | total_animals
+-----------------+---------------
+ Melody Pond     |             3
+ Dean Winchester |             2
+ Bob             |             2
+ Jennifer Orwell |             2
+ Sam Smith       |             1
+(5 rows)
+*/
