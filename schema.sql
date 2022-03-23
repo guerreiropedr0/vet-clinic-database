@@ -92,3 +92,10 @@ Indexes:
     "vets_pkey" PRIMARY KEY, btree (id)
 */
 
+CREATE TABLE specializations (
+    vets_id INTEGER,
+    species_id INTEGER,
+    PRIMARY KEY (vets_id, species_id),
+    CONSTRAINT fk_vets FOREIGN KEY (vets_id) REFERENCES vets(id),
+    CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species(id)
+);
