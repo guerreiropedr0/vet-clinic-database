@@ -114,21 +114,20 @@ Foreign-key constraints:
 */
 
 CREATE TABLE visits (
-    vets_id INTEGER,
-    animals_id INTEGER,
-    PRIMARY KEY (vets_id, animals_id),
+    vets_id INTEGER NOT NULL,
+    animals_id INTEGER NOT NULL,
+    date_of_visit DATE NOT NULL,
     CONSTRAINT fk_vets FOREIGN KEY (vets_id) REFERENCES vets(id),
     CONSTRAINT fk_animals FOREIGN KEY (animals_id) REFERENCES animals(id)
 );
 
 /*
-                 Table "public.visits"
-   Column   |  Type   | Collation | Nullable | Default
-------------+---------+-----------+----------+---------
- vets_id    | integer |           | not null |
- animals_id | integer |           | not null |
-Indexes:
-    "visits_pkey" PRIMARY KEY, btree (vets_id, animals_id)
+                  Table "public.visits"
+    Column     |  Type   | Collation | Nullable | Default
+---------------+---------+-----------+----------+---------
+ vets_id       | integer |           | not null |
+ animals_id    | integer |           | not null |
+ date_of_visit | date    |           | not null |
 Foreign-key constraints:
     "fk_animals" FOREIGN KEY (animals_id) REFERENCES animals(id)
     "fk_vets" FOREIGN KEY (vets_id) REFERENCES vets(id)
