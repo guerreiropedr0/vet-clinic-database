@@ -99,3 +99,37 @@ CREATE TABLE specializations (
     CONSTRAINT fk_vets FOREIGN KEY (vets_id) REFERENCES vets(id),
     CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species(id)
 );
+
+/*
+            Table "public.specializations"
+   Column   |  Type   | Collation | Nullable | Default
+------------+---------+-----------+----------+---------
+ vets_id    | integer |           | not null |
+ species_id | integer |           | not null |
+Indexes:
+    "specializations_pkey" PRIMARY KEY, btree (vets_id, species_id)
+Foreign-key constraints:
+    "fk_species" FOREIGN KEY (species_id) REFERENCES species(id)
+    "fk_vets" FOREIGN KEY (vets_id) REFERENCES vets(id)
+*/
+
+CREATE TABLE visits (
+    vets_id INTEGER,
+    animals_id INTEGER,
+    PRIMARY KEY (vets_id, animals_id),
+    CONSTRAINT fk_vets FOREIGN KEY (vets_id) REFERENCES vets(id),
+    CONSTRAINT fk_animals FOREIGN KEY (animals_id) REFERENCES animals(id)
+);
+
+/*
+                 Table "public.visits"
+   Column   |  Type   | Collation | Nullable | Default
+------------+---------+-----------+----------+---------
+ vets_id    | integer |           | not null |
+ animals_id | integer |           | not null |
+Indexes:
+    "visits_pkey" PRIMARY KEY, btree (vets_id, animals_id)
+Foreign-key constraints:
+    "fk_animals" FOREIGN KEY (animals_id) REFERENCES animals(id)
+    "fk_vets" FOREIGN KEY (vets_id) REFERENCES vets(id)
+    */
