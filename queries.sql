@@ -213,7 +213,7 @@ JOIN owners ON animals.owner_id = owners.id GROUP BY owners.full_name ORDER BY C
 -- Who was the last animal seen by William Tatcher?
 
 SELECT animals.name, MAX(visits.date_of_visit) FROM animals
-JOIN visits ON visits.animals_id = animals.id WHERE vets_id = 1 GROUP BY animals.name ORDER BY MAX(visits.date_of_visit) DESC;
+JOIN visits ON visits.animals_id = animals.id WHERE vets_id = 1 GROUP BY animals.name ORDER BY MAX(visits.date_of_visit) DESC LIMIT 1;
 
 /*
    name   |    max
@@ -309,7 +309,6 @@ SELECT vets.name, COUNT(visits.vets_id) FROM visits
   JOIN specializations ON vets.id = specializations.vets_id
   WHERE specializations.species_id != animals.species_id
   GROUP BY vets.name;
-
 
 /*
        name       | count
