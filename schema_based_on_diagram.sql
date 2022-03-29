@@ -53,3 +53,10 @@ ADD FOREIGN KEY ( invoice_id ) REFERENCES invoices ( id );
 ALTER TABLE invoice_items
 ADD FOREIGN KEY ( treatment_id ) REFERENCES treatments ( id );
 COMMIT;
+
+CREATE INDEX ON medical_histories (patient_id);
+CREATE INDEX ON invoices (medical_history_id);
+CREATE INDEX ON invoice_items (invoice_id);
+CREATE INDEX ON invoice_items (treatment_id);
+CREATE INDEX ON medical_histories_has_treatments (medical_history_id);
+CREATE INDEX ON medical_histories_has_treatments (treatment_id);
